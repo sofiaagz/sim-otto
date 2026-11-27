@@ -93,7 +93,7 @@ st.dataframe(prop_estados.style.format({
     "Temperatura T (K)": "{:.2f}",
     "Volumen (m³/kg)": "{:.5f}",
     "Entropía Δs (kJ/kg·K)": "{:.5f}"
-}), use_container_width=True)
+}), use_container_width=True, hide_index=True)
 
 #calor, trabajo, eficiencia
 st.subheader("Calor, Trabajo y Eficiencia")
