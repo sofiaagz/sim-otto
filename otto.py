@@ -131,14 +131,14 @@ st.dataframe(parametros_cal, use_container_width=True, hide_index=True)
 
 #diagramas
 plt.rcParams['font.family'] = 'sans-serif'
-plt.rcParams['font.sans-serif'] = ['Times New Roman', 'Arial', 'Calibri']
+plt.rcParams['font.sans-serif'] = ['Roboto', 'Arial', 'Inter']
 tab1, tab2 = st.tabs(["Diagramas termodinámicos", "Ecuaciones"])
 #gráficos P-v y T-s
 with tab1:
     st.subheader("Diagramas Termodinámicos del Ciclo")
     col_graf1, col_graf2 = st.columns(2)
 
-    # --- GRÁFICA 1: Diagrama P - v ---
+    #diagrama P-v
     with col_graf1:
         fig1, ax1 = plt.subplots(figsize=(5.5, 4.2))
         v_12 = np.linspace(v1, v2, 100)
@@ -153,7 +153,7 @@ with tab1:
         ax1.plot([v4, v1], [P4, P1], 'c-', linewidth=2, label="4→1 Rechazo Q")
         ax1.scatter([v1, v2, v3, v4], [P1, P2, P3, P4], color='black', zorder=5, s=30)
 
-        # Etiquetas con ligero desplazamiento para que no toquen las líneas
+        #desplazamiento para que no toquen las líneas
         offsets_pv = [(4, -10), (4, 4), (4, 4), (4, 4)]
         for i, txt in enumerate(['1', '2', '3', '4']):
             ax1.annotate(txt, ([v1, v2, v3, v4][i], [P1, P2, P3, P4][i]),
@@ -164,13 +164,13 @@ with tab1:
         ax1.set_xlabel("Volumen molar v (m³/mol)", fontsize=9)
         ax1.set_ylabel("Presión P (bar)", fontsize=9)
         ax1.tick_params(labelsize=8)
-        ax1.margins(x=0.12, y=0.12)  # Da aire alrededor de los puntos
+        ax1.margins(x=0.12, y=0.12)  #márgenes
         ax1.grid(True, linestyle='--', alpha=0.5)
         ax1.legend(fontsize=8, loc="upper right")
         plt.tight_layout()
         st.pyplot(fig1)
 
-    # --- GRÁFICA 2: Diagrama T - s ---
+    #diagrama T-s
     with col_graf2:
         fig2, ax2 = plt.subplots(figsize=(5.5, 4.2))
         T_23 = np.linspace(T2, T3, 100)
