@@ -79,9 +79,10 @@ wnet = w12+w23+w34+w41
 qnet = q12+q23+q34-q41
 nnet = (wnet/q_en)*100
 ds_neto = ds_12 + ds_23 + ds_34 + ds_41
-s_gen = (-q_en / T3) + (q41 / T0)
-w_perd = T0 * s_gen      
-w_ideal = wnet + w_perd
+s_gen = (-q_en/T3)+(q41/T0)
+w_perd = T0*s_gen      
+w_ideal = wnet+w_perd
+pme = wnet/(v1-v2)
 
 #tablas resultados
 #propiedades
@@ -142,10 +143,11 @@ parametros_cal = pd.DataFrame({
 st.dataframe(parametros_cal, use_container_width=True, hide_index=True)
 
 st.subheader("Parámetros adicionales")
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 col1.metric("Trabajo Ideal (w_ideal)", f"{w_ideal:.2f} kJ/kg")
 col2.metric("Trabajo Perdido (w_lost", f"{w_perd:.2f} kJ/kg")
 col3.metric("Entropía Generada (s_gen)", f"{s_gen:.4f} kJ/kg·K")
+col4.metric("Presión Media Efectiva (PME)", f"{pme:.2f} kPa")
 
 #diagramas
 plt.rcParams['font.family'] = 'sans-serif'
