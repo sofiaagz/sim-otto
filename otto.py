@@ -89,8 +89,8 @@ prop_estados = pd.DataFrame({
     "Entropía Δs (kJ/kg·K)": [s1, s2, s3, s4]
 })
 st.dataframe(prop_estados.style.format({
-    "Presión P (kPa)": "{:.4f}",
-    "Temperatura T (K)": "{:.4f}",
+    "Presión (kPa)": "{:.4f}",
+    "Temperatura (K)": "{:.4f}",
     "Volumen (m³/kg)": "{:.4f}",
     "Entropía Δs (kJ/kg·K)": "{:.4f}"
 }), use_container_width=True, hide_index=True)
