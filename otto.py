@@ -131,7 +131,7 @@ st.dataframe(parametros_cal, use_container_width=True, hide_index=True)
 
 #diagramas
 plt.rcParams['font.family'] = 'sans-serif'
-plt.rcParams['font.sans-serif'] = ['Roboto', 'Arial', 'Inter']
+plt.rcParams['font.sans-serif'] = ['Free Serif', 'Utkal', 'Inter']
 tab1, tab2 = st.tabs(["Diagramas termodinámicos", "Ecuaciones"])
 #gráficos P-v y T-s
 with tab1:
