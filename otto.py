@@ -28,6 +28,7 @@ P1 = st.sidebar.number_input("Presión inicial P1 (kPa)", value=100.0, min_value
 T1 = st.sidebar.number_input("Temperatura inicial T1 (K)", value=290.15, min_value=200.0, step=10.0)
 r = st.sidebar.slider("Relación de compresión (r = V1/V2)", min_value=4.0, max_value=18.0, value=8.0, step=0.5)
 q_en = st.sidebar.number_input("Calor agregado (entrada) (kJ/kg)", value=800.0, min_value=0.01, step=50.0)
+Tamb = st.sidebar.number_input("Temperatura ambiente T0 (K)", value=float(T1), min_value=1.0, step=5.0, format="%.2f")
 
 #cálculos
 
@@ -66,7 +67,7 @@ ds_23 = s3 - s2
 #proceso 3-4 exp. isentrópica
 q34 = 0.0
 w34 = cv*(T3-T4)
-n34 = (w34/(cv*T3))
+n34 = (w34/(cv*T3))*100
 ds_34 = s4 - s3
 #proceso 4-1 rechazo de calor isócoro
 w41 = P4*(v1-v4)  #igual a 0
@@ -78,6 +79,9 @@ wnet = w12+w23+w34+w41
 qnet = q12+q23+q34-q41
 nnet = (wnet/q_en)*100
 ds_neto = ds_12 + ds_23 + ds_34 + ds_41
+s_gen = (-q_en / T3) + (q41 / T0)
+w_perd = T0 * s_gen      
+w_ideal = wnet + w_perd
 
 #tablas resultados
 #propiedades
@@ -136,6 +140,12 @@ parametros_cal = pd.DataFrame({
     ]
 })
 st.dataframe(parametros_cal, use_container_width=True, hide_index=True)
+
+st.subheader("Parámetros adicionales")
+col1, col2, col3 = st.columns(3)
+col1.metric("Trabajo Ideal (w_ideal)", f"{w_ideal:.2f} kJ/kg")
+col2.metric("Trabajo Perdido (w_lost", f"{w_perd:.2f} kJ/kg")
+col3.metric("Entropía Generada (s_gen)", f"{s_gen:.4f} kJ/kg·K")
 
 #diagramas
 plt.rcParams['font.family'] = 'sans-serif'
