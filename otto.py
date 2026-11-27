@@ -57,26 +57,27 @@ s4 = s3
 q12 = 0.0
 w12 = cv*(T1-T2)
 n12 = (abs(w12)/(cv*(T2-T1)))*100
-
+ds_12 = s2 - s1
 #proceso 2-3 adición de calor isócoro
 w23 = P2*(v3-v2)  #igual a 0
 q23 = cv*(T3-T2)
 n23 = ((cv*(T3-T2))/q_en)*100
-
+ds_23 = s3 - s2
 #proceso 3-4 exp. isentrópica
 q34 = 0.0
 w34 = cv*(T3-T4)
 n34 = (w34/(cv*T3))
-
+ds_34 = s4 - s3
 #proceso 4-1 rechazo de calor isócoro
 w41 = P4*(v1-v4)  #igual a 0
 q41 = cv*(T4-T1)
 n41 = (q41/q23)*100
-
+ds_41 = s1 - s4
 #valores netos
 wnet = w12+w23+w34+w41
 qnet = q12+q23+q34-q41
 nnet = (wnet/q_en)*100
+ds_neto = ds_12 + ds_23 + ds_34 + ds_41
 
 #tablas resultados
 #propiedades
@@ -92,7 +93,7 @@ st.dataframe(prop_estados.style.format({
     "Presión (kPa)": "{:.4f}",
     "Temperatura (K)": "{:.4f}",
     "Volumen (m³/kg)": "{:.5f}",
-    "Entropía Δs (kJ/kg·K)": "{:.5f}"
+    "Entropía s (kJ/kg·K)": "{:.5f}"
 }), use_container_width=True, hide_index=True)
 
 #calor, trabajo, eficiencia
@@ -118,6 +119,13 @@ parametros_cal = pd.DataFrame({
         f"{w34:.2f}",
         f"{w41:.2f}",
         f"{wnet:.2f}"
+    ],
+    "Cambio Entropía Δs (kJ/kg·K)": [
+        f"{ds_12:.2f}",
+        f"+{ds_23:.2f}",
+        f"{ds_34:.2f}",
+        f"{ds_41:.2f}",
+        f"{ds_neto:.2f}"
     ],
     "Eficiencia (%)": [
         f"{n12:.2f} %",
