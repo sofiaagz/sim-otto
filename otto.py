@@ -25,7 +25,7 @@ cv = st.sidebar.number_input("Calor específico Cv (kJ/kg·K)", value=cv_t, step
 k = st.sidebar.number_input("Relación de calores específicos (k)", value=k_t, step=0.01, format="%.2f")
 
 P1 = st.sidebar.number_input("Presión inicial P1 (kPa)", value=100.0, min_value=0.01, step=5.0)
-T1 = st.sidebar.number_input("Temperatura inicial T1 (K)", value=300.0, min_value=200.0, step=10.0)
+T1 = st.sidebar.number_input("Temperatura inicial T1 (K)", value=290.15, min_value=200.0, step=10.0)
 r = st.sidebar.slider("Relación de compresión (r = V1/V2)", min_value=4.0, max_value=18.0, value=8.0, step=0.5)
 q_en = st.sidebar.number_input("Calor agregado (entrada) (kJ/kg)", value=800.0, min_value=0.01, step=50.0)
 
