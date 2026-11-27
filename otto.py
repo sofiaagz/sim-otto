@@ -91,8 +91,8 @@ prop_estados = pd.DataFrame({
 st.dataframe(prop_estados.style.format({
     "Presión (kPa)": "{:.4f}",
     "Temperatura (K)": "{:.4f}",
-    "Volumen (m³/kg)": "{:.4f}",
-    "Entropía Δs (kJ/kg·K)": "{:.4f}"
+    "Volumen (m³/kg)": "{:.5f}",
+    "Entropía Δs (kJ/kg·K)": "{:.5f}"
 }), use_container_width=True, hide_index=True)
 
 #calor, trabajo, eficiencia
